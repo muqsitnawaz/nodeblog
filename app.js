@@ -15,6 +15,9 @@ const users = require('./routes/users');
 
 const app = express();
 
+// Globals
+app.locals.moment = require('moment')
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -57,7 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(flash());
 app.use(function (req, res, next) {
-  // acess messages in any view
+  // acess messages in views
   res.locals.messages = require('express-messages')(req, res);
   next();
 })
